@@ -1,18 +1,32 @@
 <template>
   <div id="app">
-    <HelloWorld/>
+    <button @click="switchChart">切换省市</button>
+    <ProvinceChart v-if="isProvince" />
+    <CityChart v-else />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ProvinceChart from "./components/ProvinceChart.vue";
+import CityChart from "./components/CityChart.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      isProvince: true
+    };
+  },
   components: {
-    HelloWorld
+    ProvinceChart,
+    CityChart
+  },
+  methods: {
+    switchChart() {
+      this.isProvince = !this.isProvince;
+    }
   }
-}
+};
 </script>
 
 <style>
@@ -22,6 +36,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
+}
+button {
+  margin-bottom: 30px;
 }
 </style>
